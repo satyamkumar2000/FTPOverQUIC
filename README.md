@@ -1,12 +1,14 @@
-# QUIC-based File Transfer Protocol
+# QUIC File Transfer Protocol
 
-This project implements a file transfer protocol over QUIC, supporting both text files and binary files like images.
+This project implements a file transfer protocol over QUIC, supporting the transfer of text and binary files, such as images. It ensures secure communication using TLS certificates and includes a feature for verifying file integrity through checksums.
 
 ## Features
 
-- Transfer any type of file, including text and binary files.
-- Utilizes QUIC for fast and reliable data transfer.
-- Ensures data integrity with checksum verification.
+- Transfer of text and binary files (e.g., images) over QUIC.
+- Secure communication using TLS certificates for encryption.
+- File integrity verification using checksums.
+- Handles both client and server operations.
+- Supports both upload and download of files.
 
 ## Requirements
 
@@ -19,8 +21,9 @@ The `certs` folder already contains keys and certificates for both client and se
 
 1. Ensure **OpenSSL** is installed on your system.
 
-2. Run the `certgen` shell script:
-    ```bash
+2. Run the `certgen.sh` shell script:
+    ```sh
+    # Run the certificate generation script
     ./certgen.sh
     ```
 
@@ -29,17 +32,17 @@ The `certs` folder already contains keys and certificates for both client and se
 ## Usage
 
 1. Build the project (optional, as running the cargo run command directly will also build the project before executing):
-    ```bash
+    ```sh
     cargo build
     ```
 
 2. Start the server:
-    ```bash
+    ```sh
     cargo run -- server --cert ./certs/server.crt --key ./certs/server.key
     ```
 
 3. Run the client:
-    ```bash
+    ```sh
     cargo run --bin quicrs -- client --address 127.0.0.1 --port 54321 --cert ./certs/ca.cert
     ```
 
